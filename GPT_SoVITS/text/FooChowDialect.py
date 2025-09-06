@@ -67,6 +67,7 @@ punctuation_set = set(punctuation)
 def g2p(text):
     phones = []
     for word in text.split(' '):
+        word = word.replace('213','21')
         if word in symbols:
             phones.append(word)
         elif word.upper() in symbols:
@@ -94,7 +95,7 @@ def g2p(text):
 
 
 if __name__ == "__main__":
-    text = "ai55 zang55 hai33 jy55 dou24 bei55 a33 yes"
+    text = "ai55 zang55 hai33 jy213 dou24 bei55 a33 yes"
     text = text_normalize(text)
     phones = g2p(text)
     print(phones)

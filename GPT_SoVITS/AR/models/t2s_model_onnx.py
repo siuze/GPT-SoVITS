@@ -16,7 +16,7 @@ default_config = {
     "num_codebook": 8,
     "p_dropout": 0.0,
     "vocab_size": 1024 + 1,
-    "phoneme_vocab_size": 662,
+    "phoneme_vocab_size": 512,
     "EOS": 1024,
 }
 
@@ -255,7 +255,7 @@ class Text2SemanticDecoder(nn.Module):
         self.num_layers = config["model"]["n_layer"]
         self.norm_first = norm_first
         self.vocab_size = config["model"]["vocab_size"]
-        self.phoneme_vocab_size = 662 # config["model"]["phoneme_vocab_size"]
+        self.phoneme_vocab_size = config["model"]["phoneme_vocab_size"]
         self.p_dropout = float(config["model"]["dropout"])
         self.EOS = config["model"]["EOS"]
         self.norm_first = norm_first
