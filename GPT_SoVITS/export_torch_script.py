@@ -32,7 +32,7 @@ default_config = {
     "num_codebook": 8,
     "p_dropout": 0.0,
     "vocab_size": 1024 + 1,
-    "phoneme_vocab_size": 512,
+    "phoneme_vocab_size": 662,
     "EOS": 1024,
 }
 
@@ -410,7 +410,7 @@ class T2SModel(nn.Module):
         self.num_head = raw_t2s.model.num_head
         self.num_layers = raw_t2s.model.num_layers
         self.vocab_size = raw_t2s.model.vocab_size
-        self.phoneme_vocab_size = raw_t2s.model.phoneme_vocab_size
+        self.phoneme_vocab_size = 662 # raw_t2s.model.phoneme_vocab_size
         # self.p_dropout = float(raw_t2s.model.p_dropout)
         self.EOS: int = int(raw_t2s.model.EOS)
         self.norm_first = raw_t2s.model.norm_first
