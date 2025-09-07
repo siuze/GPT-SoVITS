@@ -127,7 +127,7 @@ class TextPreprocessor:
             if language == "foc":
                 textlist = text.split(' ')
                 langlist = ['foc'] * len(textlist)
-            if language == "all_zh":
+            elif language == "all_zh":
                 for tmp in LangSegmenter.getTexts(text,"zh"):
                     langlist.append(tmp["lang"])
                     textlist.append(tmp["text"])

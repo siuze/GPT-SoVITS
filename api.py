@@ -546,7 +546,12 @@ def get_phones_and_bert(text, language, version, final=False):
     text = re.sub(r' {2,}', ' ', text)
     textlist = []
     langlist = []
-    if language == "all_zh":
+    if language == "foc":
+        while text.endswith(('。',' ')):
+            text = text[:-1]
+        textlist = text.split(' ')
+        langlist = ['foc'] * len(textlist)
+    elif language == "all_zh":
         for tmp in LangSegmenter.getTexts(text,"zh"):
             langlist.append(tmp["lang"])
             textlist.append(tmp["text"])
