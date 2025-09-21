@@ -604,11 +604,12 @@ def get_phones_and_bert(text, language, version, final=False):
     textlist = []
     langlist = []
     if language == "foc":
+        print(f"处理FOC {text=} {language=} {version=}")
         while text.endswith(('。',' ')):
             text = text[:-1]
         textlist = text.split(' ')
         langlist = ['foc'] * len(textlist)
-    if language == "all_zh":
+    elif language == "all_zh":
         for tmp in LangSegmenter.getTexts(text,"zh"):
             langlist.append(tmp["lang"])
             textlist.append(tmp["text"])
@@ -665,10 +666,12 @@ def get_phones_and_bert(text, language, version, final=False):
         bert_list.append(bert)
     bert = torch.cat(bert_list, dim=1)
     phones = sum(phones_list, [])
-    norm_text = "".join(norm_text_list)
+    # norm_text = "".join(norm_text_list)
+    norm_text = text
 
-    if not final and len(phones) < 6:
-        return get_phones_and_bert("." + text, language, version, final=True)
+
+    # if not final and len(phones) < 6:
+    #     return get_phones_and_bert("." + text, language, version, final=True)
 
     return phones, bert.to(dtype), norm_text
 
@@ -863,6 +866,7 @@ def get_tts_wav(
             text += "。" if text_language != "en" else "."
         print(i18n("实际输入的目标文本(每句):"), text)
         phones2, bert2, norm_text2 = get_phones_and_bert(text, text_language, version)
+        print('get_phones_and_bert返回：',phones2, bert2, norm_text2)
         print(i18n("前端处理后的文本(每句):"), norm_text2)
         if not ref_free:
             bert = torch.cat([bert1, bert2], 1)
