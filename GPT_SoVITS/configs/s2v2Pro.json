@@ -84,7 +84,7 @@
     "use_spectral_norm": false,
     "gin_channels": 1024,
     "semantic_frame_rate": "25hz",
-    "freeze_quantizer": true
+    "freeze_quantizer": false
   },
   "s2_ckpt_dir": "logs/s2/big2k1",
   "content_module": "cnhubert"
